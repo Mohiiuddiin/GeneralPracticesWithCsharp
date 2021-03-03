@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <h1 id="header">Hello World</h1>
+    <input id="clickMeButton" type="button" value="Click Me" />
+
+    <br />
+
+    <input id="name" type="text" />
+
+<input id="showButton" type="button" value="Click Me"/>
+
+<br/>
+
+<select id="country">
+    <option value="1">Bangladesh</option>
+    <option value="2">India</option>
+</select>
+
+<script src="jquery-1.10.2.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('#showButton').click(function () {
+                var name = $('#country').val();
+                alert(name);
+            });
+
+            $('#clickMeButton').hover(function () {
+                $('#header').hide(1000);
+            }, function () {
+                $('#header').show(1000);
+            });
+        });
+
+
+    </script>
+</body>
+</html>

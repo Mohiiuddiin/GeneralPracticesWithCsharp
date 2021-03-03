@@ -1,0 +1,95 @@
+﻿@using MvcIntroWebApp.Models
+@{
+    ViewBag.Title = "Save";
+    Layout = null;
+    List<Category> categories = ViewBag.Categories;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        label.error {
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+<form id="SignupForm" method="POST">
+    <table>
+        <tr>
+            <td>
+                <label for="Name">Name</label>
+            </td>
+            <td>
+                <input id="Name" name="Name" type="text"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="Price">Price</label>
+            </td>
+            <td>
+                <input id="Price" name="Price" type="text"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="Price">Category</label>
+            </td>
+            <td>
+                <select id="CategoryId" name="CategoryId">
+                    <option value="">--Select--</option>
+                    @foreach (Category category in categories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+
+            </td>
+            <td>
+                <input type="submit"/>
+            </td>
+        </tr>
+    </table>
+
+    @if (ViewBag.Message != null)
+    {
+        <h6>@ViewBag.Message</h6>
+    }
+    
+</form>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+<script>
+    $("#SignupForm").validate({
+        rules: {
+            Name: "required",
+            Price: "required",
+            CategoryId: "required"
+
+            
+        },
+        messages: {
+            Name: "Please enter your name",
+            Price: "Please enter price",
+            CategoryId: "Please select category"
+            
+        }
+    });
+</script>
+
+</body>
+
+</html>
+

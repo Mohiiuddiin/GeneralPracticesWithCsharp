@@ -1,0 +1,83 @@
+﻿@using MvcPracticeWebApp.Models
+@model Employee
+@{
+    ViewBag.Title = "Save";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+   
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+
+    @using (Html.BeginForm(null,null,FormMethod.Post,new { id ="signupForm" }))
+    {
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(x=>x.Name)
+                </td>
+                <td>
+                    @Html.TextBoxFor(x => x.Name)
+                    @Html.ValidationMessageFor(x => x.Name)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Email)
+                </td>
+                <td>
+                    @Html.TextBoxFor(x => x.Email)
+                    @Html.ValidationMessageFor(x => x.Email)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.Gender)
+                </td>
+                <td>
+                    @Html.RadioButtonFor(x=>x.Gender, "Male") Male
+                    @Html.RadioButtonFor(x=>x.Gender, "Female") Female
+                    @Html.ValidationMessageFor(x => x.Gender)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(x => x.DepartmentId)
+                </td>
+                <td>
+                    @Html.DropDownListFor(x=>x.DepartmentId,new SelectList(ViewBag.Departments,"Value", "Text"))
+                    @Html.ValidationMessageFor(x => x.DepartmentId)
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    
+                </td>
+                <td>
+                    <input type="submit"/>
+                </td>
+            </tr>
+
+        </table>                        
+    }
+
+
+    @if (ViewBag.Message != null)
+    {
+        <h3>@ViewBag.Message</h3>
+    }
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

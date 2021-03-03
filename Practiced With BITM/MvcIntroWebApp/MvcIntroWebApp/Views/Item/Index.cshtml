@@ -1,0 +1,37 @@
+﻿@using MvcIntroWebApp.Models
+@model IEnumerable<MvcIntroWebApp.Models.Item>
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Price</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Item item in Model)
+            {
+               <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+            </tr>
+            }
+        </tbody>
+
+    </table>
+</body>
+
+</html>

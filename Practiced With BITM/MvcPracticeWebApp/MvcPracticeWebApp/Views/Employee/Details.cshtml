@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+
+        <table>
+            <tr>
+                <td>
+                    @Html.Label("DepartmentId")
+                </td>
+                <td>
+                    @Html.DropDownList("DepartmentId",
+                        new SelectList(ViewBag.Department,
+                            "Value", "Text"))
+                </td>
+            </tr>
+
+            @*<tr>
+                    <td>
+                        @Html.Label("Department")
+                    </td>
+                    <td>
+                        <select id="EmployeeId" name="EmployeeId">
+                            <option value="">--Select--</option>
+                        </select>
+                    </td>
+                </tr>*@
+        </table>
+
+
+
+        <table>
+            <thead>
+            <tr>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Gender</td>
+            </tr>
+            </thead>
+            <tbody id="employeeDetails">
+                
+            </tbody>
+        </table>
+    }
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $("#DepartmentId").change(function () {
+
+                var departmentId = $("#DepartmentId").val();
+
+
+                var json = { deptId: departmentId };
+
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetEmployeeByDepartmentId", "Employee")',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(json),
+                    success: function (data) {
+
+                        $("#employeeDetails").empty();
+                        
+
+                        $.each(data, function (key, value) {
+
+                            $("#employeeDetails").append('<tr><td>' + value.Name + '</td>   <td>' + value.Email + '</td>   <td>' + value.Gender + '</td> </tr>');
+
+                        });
+
+                    }
+                });
+
+            });
+        });
+    </script>
+
+
+</body>
+</html>
